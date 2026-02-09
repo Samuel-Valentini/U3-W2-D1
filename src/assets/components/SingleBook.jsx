@@ -1,9 +1,8 @@
 import { Component } from "react";
-import { Accordion, Col, Form } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import ReviewsAccordion from "./ReviewsAccordion";
-import AddComment from "./AddComment";
 
 class SingleBook extends Component {
     state = {
@@ -43,81 +42,6 @@ class SingleBook extends Component {
                         <Button variant="primary">
                             Buy for {book.price} €{" "}
                         </Button>
-                        {this.state.selected ? (
-                            <Form
-                                onSubmit={(e) => {
-                                    e.preventDefault();
-                                    if (this.props.dataToSend.rate !== "") {
-                                        this.setState({ shouldPost: true });
-                                    } else {
-                                        console.log("rate non inserito");
-                                    }
-                                }}>
-                                <h4 className="text-center mt-3">
-                                    Leave a review
-                                </h4>
-
-                                <Form.Group
-                                    className="mb-3"
-                                    controlId="exampleForm.ControlTextarea1">
-                                    <Form.Control
-                                        required
-                                        as="textarea"
-                                        rows={3}
-                                        value={this.props.dataToSend.comment}
-                                        onChange={(e) => {
-                                            this.props.setCommentDataToSend(e);
-                                        }}
-                                    />
-                                </Form.Group>
-                                <Form.Select
-                                    value={this.props.dataToSend.rate}
-                                    onChange={(e) => {
-                                        this.props.setRateDataToSend(e);
-                                    }}
-                                    required
-                                    aria-label="Default select example">
-                                    <option value="">Rate</option>
-                                    <option value="1"> &#9733; 1/5</option>
-                                    <option value="2">
-                                        {" "}
-                                        &#9733;&#9733; 2/5
-                                    </option>
-                                    <option value="3">
-                                        {" "}
-                                        &#9733;&#9733;&#9733; 3/5
-                                    </option>
-                                    <option value="4">
-                                        {" "}
-                                        &#9733;&#9733;&#9733;&#9733; 4/5
-                                    </option>
-                                    <option value="5">
-                                        {" "}
-                                        &#9733;&#9733;&#9733;&#9733;&#9733;5/5
-                                    </option>
-                                </Form.Select>
-                                {this.state.shouldPost && (
-                                    <AddComment
-                                        dataToSend={this.props.dataToSend}
-                                        onDone={(ok) => {
-                                            this.setState((prev) => ({
-                                                shouldPost: false,
-                                                dataToSend: ok
-                                                    ? {
-                                                          ...prev.dataToSend,
-                                                          comment: "",
-                                                          rate: "",
-                                                          elementId: "",
-                                                      }
-                                                    : prev.dataToSend,
-                                            }));
-                                        }}></AddComment>
-                                )}
-                                <div className="text-center mt-2">
-                                    <Button type="submit">Submit</Button>
-                                </div>
-                            </Form>
-                        ) : null}
                     </Card.Body>
                 </Card>
             </Col>

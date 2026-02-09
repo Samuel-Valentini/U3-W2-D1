@@ -6,7 +6,7 @@ import RomanceBooks from "../json/romance.json";
 import ScifiBooks from "../json/scifi.json";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import BookList from "./BookList";
+import BookList from "./Booklist";
 
 class GenresChoice extends Component {
     state = {
