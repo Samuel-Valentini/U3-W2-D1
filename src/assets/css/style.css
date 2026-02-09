@@ -1,0 +1,9 @@
+.change-ratio {
+    aspect-ratio: 3/5;
+    object-fit: cover;
+    object-position: top;
+}
+
+.my-card {
+    height: 100%;
+}
