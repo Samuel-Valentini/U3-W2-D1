@@ -14,6 +14,25 @@ class GenresChoice extends Component {
         reloadComment: 0,
     };
 
+    buttonGenerator(genreChoose) {
+        return (
+            <Button
+                variant="success"
+                style={{
+                    backgroundColor:
+                        this.state.genre === genreChoose ? "#157347" : "",
+                }}
+                onClick={() => {
+                    this.setState((prev) => ({
+                        genre: genreChoose,
+                        reloadComment: prev.reloadComment + 1,
+                    }));
+                }}>
+                {genreChoose}
+            </Button>
+        );
+    }
+
     render() {
         let bookType = FantasyBooks;
         switch (this.state.genre) {
@@ -41,86 +60,11 @@ class GenresChoice extends Component {
                     <ButtonGroup
                         aria-label="Genres"
                         className="m-auto text-center">
-                        <Button
-                            variant="success"
-                            style={{
-                                backgroundColor:
-                                    this.state.genre === "fantasy"
-                                        ? "#157347"
-                                        : "",
-                            }}
-                            onClick={() => {
-                                this.setState((prev) => ({
-                                    genre: "fantasy",
-                                    reloadComment: prev.reloadComment + 1,
-                                }));
-                            }}>
-                            fantasy
-                        </Button>
-                        <Button
-                            variant="success"
-                            style={{
-                                backgroundColor:
-                                    this.state.genre === "history"
-                                        ? "#157347"
-                                        : "",
-                            }}
-                            onClick={() => {
-                                this.setState((prev) => ({
-                                    genre: "history",
-                                    reloadComment: prev.reloadComment + 1,
-                                }));
-                            }}>
-                            history
-                        </Button>
-                        <Button
-                            variant="success"
-                            style={{
-                                backgroundColor:
-                                    this.state.genre === "horror"
-                                        ? "#157347"
-                                        : "",
-                            }}
-                            onClick={() => {
-                                this.setState((prev) => ({
-                                    genre: "horror",
-                                    reloadComment: prev.reloadComment + 1,
-                                }));
-                            }}>
-                            horror
-                        </Button>
-                        <Button
-                            variant="success"
-                            style={{
-                                backgroundColor:
-                                    this.state.genre === "romance"
-                                        ? "#157347"
-                                        : "",
-                            }}
-                            onClick={() => {
-                                this.setState((prev) => ({
-                                    genre: "romance",
-                                    reloadComment: prev.reloadComment + 1,
-                                }));
-                            }}>
-                            romance
-                        </Button>
-                        <Button
-                            variant="success"
-                            style={{
-                                backgroundColor:
-                                    this.state.genre === "scifi"
-                                        ? "#157347"
-                                        : "",
-                            }}
-                            onClick={() => {
-                                this.setState((prev) => ({
-                                    genre: "scifi",
-                                    reloadComment: prev.reloadComment + 1,
-                                }));
-                            }}>
-                            scifi
-                        </Button>
+                        {this.buttonGenerator("fantasy")}
+                        {this.buttonGenerator("history")}
+                        {this.buttonGenerator("horror")}
+                        {this.buttonGenerator("romance")}
+                        {this.buttonGenerator("scifi")}
                     </ButtonGroup>
                 </div>
                 <BookList
