@@ -12,14 +12,14 @@ class AddComment extends Component {
             method: "post",
             body: JSON.stringify(this.props.dataToSend),
             headers: {
-                "content-type": "application/JSON",
+                "Content-Type": "application/json",
                 Authorization: `Bearer ${auth}`,
             },
         })
             .then((res) => {
                 if (res.ok) {
                     console.log("tutto ok");
-                    alert("Comment added, refresh the page to view it.");
+                    alert("Comment added.");
                     this.props.onDone?.(true);
                 } else {
                     throw new Error("error in the first .then (POST)");
@@ -33,6 +33,7 @@ class AddComment extends Component {
                 this.props.onDone?.(false);
             });
     }
+
     render() {}
 }
 export default AddComment;

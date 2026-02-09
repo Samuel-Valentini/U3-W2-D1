@@ -7,6 +7,7 @@ import AddComment from "./AddComment";
 
 class BookList extends Component {
     state = {
+        notifyReviews: 0,
         search: "",
         genre: "fantasy",
         selectedAsin: "",
@@ -133,6 +134,9 @@ class BookList extends Component {
                                         <h2>Reviews</h2>
 
                                         <ReviewsAccordion
+                                            notifyReviews={
+                                                this.state.notifyReviews
+                                            }
                                             asin={
                                                 this.state.selectedAsin
                                             }></ReviewsAccordion>
@@ -228,6 +232,8 @@ class BookList extends Component {
                                                               elementId: "",
                                                           }
                                                         : prev.dataToSend,
+                                                    notifyReviews:
+                                                        prev.notifyReviews + 1,
                                                 }));
                                             }}></AddComment>
                                     )}
