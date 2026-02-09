@@ -23,16 +23,13 @@ class SingleBook extends Component {
         return (
             <Col md="4" lg="3" xxl="2" className="mb-3" key={book.asin}>
                 <Card
-                    className={`my-card ${this.state.selected ? "bg-warning" : ""}`}>
+                    className={`my-card ${book.asin === this.props.selectedAsin ? "bg-warning" : ""}`}>
                     <Card.Img
                         variant="top"
                         src={book.img}
                         className="change-ratio"
                         onClick={() => {
-                            this.setState({
-                                ...this.state,
-                                selected: !this.state.selected,
-                            });
+                            this.props.setBooklistState(book.asin);
                         }}
                     />
                     <Card.Body className="d-flex flex-column justify-content-between">
