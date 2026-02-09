@@ -11,6 +11,32 @@ class ReviewsAccordion extends Component {
         comments: [],
     };
 
+    componentDidUpdate(pP) {
+        if (pP !== this.props.asin) {
+            fetch(url + this.props.asin, {
+                headers: {
+                    Authorization: `Bearer ${auth}`,
+                },
+            })
+                .then((res) => {
+                    if (res.ok) {
+                        return res.json();
+                    } else {
+                        throw new Error("error in the first .then");
+                    }
+                })
+                .then((data) => {
+                    this.setState({
+                        asin: this.props.asin,
+                        comments: data,
+                    });
+                })
+                .catch((e) => {
+                    console.log("error " + e);
+                });
+        }
+    }
+
     componentDidMount() {
         fetch(url + this.props.asin, {
             headers: {

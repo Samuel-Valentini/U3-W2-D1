@@ -13,7 +13,7 @@ class SingleBook extends Component {
             rate: "",
             elementId: "",
         },
-        asin: "",
+        // asin: "",
         shouldPost: false,
     };
 
@@ -47,7 +47,7 @@ class SingleBook extends Component {
                             <Form
                                 onSubmit={(e) => {
                                     e.preventDefault();
-                                    if (this.state.dataToSend.rate !== "") {
+                                    if (this.props.dataToSend.rate !== "") {
                                         this.setState({ shouldPost: true });
                                     } else {
                                         console.log("rate non inserito");
@@ -64,27 +64,16 @@ class SingleBook extends Component {
                                         required
                                         as="textarea"
                                         rows={3}
-                                        value={this.state.dataToSend.comment}
+                                        value={this.props.dataToSend.comment}
                                         onChange={(e) => {
-                                            this.setState((prev) => ({
-                                                dataToSend: {
-                                                    ...prev.dataToSend,
-                                                    comment: e.target.value,
-                                                    elementId: book.asin,
-                                                },
-                                            }));
+                                            this.props.setCommentDataToSend(e);
                                         }}
                                     />
                                 </Form.Group>
                                 <Form.Select
-                                    value={this.state.dataToSend.rate}
+                                    value={this.props.dataToSend.rate}
                                     onChange={(e) => {
-                                        this.setState((prev) => ({
-                                            dataToSend: {
-                                                ...prev.dataToSend,
-                                                rate: e.target.value,
-                                            },
-                                        }));
+                                        this.props.setRateDataToSend(e);
                                     }}
                                     required
                                     aria-label="Default select example">
@@ -109,7 +98,7 @@ class SingleBook extends Component {
                                 </Form.Select>
                                 {this.state.shouldPost && (
                                     <AddComment
-                                        dataToSend={this.state.dataToSend}
+                                        dataToSend={this.props.dataToSend}
                                         onDone={(ok) => {
                                             this.setState((prev) => ({
                                                 shouldPost: false,
