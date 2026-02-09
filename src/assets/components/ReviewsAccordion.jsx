@@ -12,7 +12,7 @@ class ReviewsAccordion extends Component {
     };
 
     componentDidUpdate(pP) {
-        if (pP !== this.props.asin) {
+        if (pP.asin !== this.props.asin) {
             fetch(url + this.props.asin, {
                 headers: {
                     Authorization: `Bearer ${auth}`,
