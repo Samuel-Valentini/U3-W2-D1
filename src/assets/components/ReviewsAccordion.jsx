@@ -11,57 +11,7 @@ class ReviewsAccordion extends Component {
         comments: [],
     };
 
-    componentDidUpdate(pP) {
-        if (pP.asin !== this.props.asin) {
-            fetch(url + this.props.asin, {
-                headers: {
-                    Authorization: `Bearer ${auth}`,
-                },
-            })
-                .then((res) => {
-                    if (res.ok) {
-                        return res.json();
-                    } else {
-                        throw new Error("error in the first .then");
-                    }
-                })
-                .then((data) => {
-                    this.setState({
-                        asin: this.props.asin,
-                        comments: data,
-                    });
-                })
-                .catch((e) => {
-                    console.log("error " + e);
-                });
-        }
-
-        if (this.props.notifyReviews !== pP.notifyReviews) {
-            fetch(url + this.props.asin, {
-                headers: {
-                    Authorization: `Bearer ${auth}`,
-                },
-            })
-                .then((res) => {
-                    if (res.ok) {
-                        return res.json();
-                    } else {
-                        throw new Error("error in the first .then");
-                    }
-                })
-                .then((data) => {
-                    this.setState({
-                        asin: this.props.asin,
-                        comments: data,
-                    });
-                })
-                .catch((e) => {
-                    console.log("error " + e);
-                });
-        }
-    }
-
-    componentDidMount() {
+    getReviews = () => {
         fetch(url + this.props.asin, {
             headers: {
                 Authorization: `Bearer ${auth}`,
@@ -83,6 +33,20 @@ class ReviewsAccordion extends Component {
             .catch((e) => {
                 console.log("error " + e);
             });
+    };
+
+    componentDidUpdate(pP) {
+        if (pP.asin !== this.props.asin) {
+            this.getReviews();
+        }
+
+        if (this.props.notifyReviews !== pP.notifyReviews) {
+            this.getReviews();
+        }
+    }
+
+    componentDidMount() {
+        this.getReviews();
     }
 
     render() {
