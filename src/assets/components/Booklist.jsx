@@ -121,113 +121,122 @@ class BookList extends Component {
                         md="4"
                         lg="3"
                         xxl="2"
-                        className="bg bg-warning text-center">
-                        {this.state.selectedAsin ? (
-                            <>
-                                <div className="flex-grow-1 me-3">
-                                    <h1>{tit}</h1>
-                                    <hr />
-                                    <h2>Reviews</h2>
+                        className="bg bg-warning text-center ">
+                        <div
+                            className="sticky-top overflow-auto"
+                            style={{ height: "100vh" }}>
+                            {this.state.selectedAsin ? (
+                                <>
+                                    <div className="flex-grow-1 me-3 ">
+                                        <h1>{tit}</h1>
+                                        <hr />
+                                        <h2>Reviews</h2>
 
-                                    <ReviewsAccordion
-                                        asin={
-                                            this.state.selectedAsin
-                                        }></ReviewsAccordion>
-                                </div>
-                                <Button variant="primary" className="mx-auto">
-                                    Buy for {pric} €{" "}
-                                </Button>
-                            </>
-                        ) : null}
+                                        <ReviewsAccordion
+                                            asin={
+                                                this.state.selectedAsin
+                                            }></ReviewsAccordion>
+                                    </div>
+                                    <Button
+                                        variant="primary"
+                                        className="mx-auto">
+                                        Buy for {pric} €{" "}
+                                    </Button>
+                                </>
+                            ) : null}
 
-                        {this.state.selectedAsin ? (
-                            <Form
-                                className="me-3"
-                                onSubmit={(e) => {
-                                    e.preventDefault();
-                                    if (this.state.dataToSend.rate !== "") {
-                                        this.setState({ shouldPost: true });
-                                    } else {
-                                        console.log("rate non inserito");
-                                    }
-                                }}>
-                                <h4 className="text-center mt-3">
-                                    Leave a review
-                                </h4>
+                            {this.state.selectedAsin ? (
+                                <Form
+                                    className="me-3"
+                                    onSubmit={(e) => {
+                                        e.preventDefault();
+                                        if (this.state.dataToSend.rate !== "") {
+                                            this.setState({ shouldPost: true });
+                                        } else {
+                                            console.log("rate non inserito");
+                                        }
+                                    }}>
+                                    <h4 className="text-center mt-3">
+                                        Leave a review
+                                    </h4>
 
-                                <Form.Group
-                                    className="mb-3"
-                                    controlId="exampleForm.ControlTextarea1">
-                                    <Form.Control
-                                        required
-                                        as="textarea"
-                                        rows={3}
-                                        value={this.state.dataToSend.comment}
+                                    <Form.Group
+                                        className="mb-3"
+                                        controlId="exampleForm.ControlTextarea1">
+                                        <Form.Control
+                                            required
+                                            as="textarea"
+                                            rows={3}
+                                            value={
+                                                this.state.dataToSend.comment
+                                            }
+                                            onChange={(e) => {
+                                                this.setState((prev) => ({
+                                                    dataToSend: {
+                                                        ...prev.dataToSend,
+                                                        comment: e.target.value,
+                                                        elementId:
+                                                            this.state
+                                                                .selectedAsin,
+                                                    },
+                                                }));
+                                            }}
+                                        />
+                                    </Form.Group>
+                                    <Form.Select
+                                        value={this.state.dataToSend.rate}
                                         onChange={(e) => {
                                             this.setState((prev) => ({
                                                 dataToSend: {
                                                     ...prev.dataToSend,
-                                                    comment: e.target.value,
-                                                    elementId:
-                                                        this.state.selectedAsin,
+                                                    rate: e.target.value,
                                                 },
                                             }));
                                         }}
-                                    />
-                                </Form.Group>
-                                <Form.Select
-                                    value={this.state.dataToSend.rate}
-                                    onChange={(e) => {
-                                        this.setState((prev) => ({
-                                            dataToSend: {
-                                                ...prev.dataToSend,
-                                                rate: e.target.value,
-                                            },
-                                        }));
-                                    }}
-                                    required
-                                    aria-label="Default select example">
-                                    <option value="">Rate</option>
-                                    <option value="1"> &#9733; 1/5</option>
-                                    <option value="2">
-                                        {" "}
-                                        &#9733;&#9733; 2/5
-                                    </option>
-                                    <option value="3">
-                                        {" "}
-                                        &#9733;&#9733;&#9733; 3/5
-                                    </option>
-                                    <option value="4">
-                                        {" "}
-                                        &#9733;&#9733;&#9733;&#9733; 4/5
-                                    </option>
-                                    <option value="5">
-                                        {" "}
-                                        &#9733;&#9733;&#9733;&#9733;&#9733;5/5
-                                    </option>
-                                </Form.Select>
-                                {this.state.shouldPost && (
-                                    <AddComment
-                                        dataToSend={this.state.dataToSend}
-                                        onDone={(ok) => {
-                                            this.setState((prev) => ({
-                                                shouldPost: false,
-                                                dataToSend: ok
-                                                    ? {
-                                                          ...prev.dataToSend,
-                                                          comment: "",
-                                                          rate: "",
-                                                          elementId: "",
-                                                      }
-                                                    : prev.dataToSend,
-                                            }));
-                                        }}></AddComment>
-                                )}
-                                <div className="text-center mt-2">
-                                    <Button type="submit">Submit</Button>
-                                </div>
-                            </Form>
-                        ) : null}
+                                        required
+                                        aria-label="Default select example">
+                                        <option value="">Rate</option>
+                                        <option value="1"> &#9733; 1/5</option>
+                                        <option value="2">
+                                            {" "}
+                                            &#9733;&#9733; 2/5
+                                        </option>
+                                        <option value="3">
+                                            {" "}
+                                            &#9733;&#9733;&#9733; 3/5
+                                        </option>
+                                        <option value="4">
+                                            {" "}
+                                            &#9733;&#9733;&#9733;&#9733; 4/5
+                                        </option>
+                                        <option value="5">
+                                            {" "}
+                                            &#9733;&#9733;&#9733;&#9733;&#9733;5/5
+                                        </option>
+                                    </Form.Select>
+                                    {this.state.shouldPost && (
+                                        <AddComment
+                                            dataToSend={this.state.dataToSend}
+                                            onDone={(ok) => {
+                                                this.setState((prev) => ({
+                                                    shouldPost: false,
+                                                    dataToSend: ok
+                                                        ? {
+                                                              ...prev.dataToSend,
+                                                              comment: "",
+                                                              rate: "",
+                                                              elementId: "",
+                                                          }
+                                                        : prev.dataToSend,
+                                                }));
+                                            }}></AddComment>
+                                    )}
+                                    <div className="text-center mt-2">
+                                        <Button type="submit">Submit</Button>
+                                    </div>
+                                </Form>
+                            ) : null}
+                        </div>
                     </Col>
                 </Row>
             </>
