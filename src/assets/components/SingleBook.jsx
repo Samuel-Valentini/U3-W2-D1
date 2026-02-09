@@ -12,7 +12,7 @@ class SingleBook extends Component {
             rate: "",
             elementId: "",
         },
-        // asin: "",
+        asin: "",
         shouldPost: false,
     };
 

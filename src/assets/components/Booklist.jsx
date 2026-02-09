@@ -68,11 +68,11 @@ class BookList extends Component {
             tit = "";
         }
 
-        console.log(newList);
+        // console.log(newList);
 
-        console.log(pri);
+        // console.log(pri);
 
-        console.log(pric);
+        // console.log(pric);
 
         return (
             <>
