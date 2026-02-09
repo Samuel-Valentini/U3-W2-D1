@@ -11,6 +11,7 @@ import BookList from "./Booklist";
 class GenresChoice extends Component {
     state = {
         genre: "fantasy",
+        reloadComment: 0,
     };
 
     render() {
@@ -49,9 +50,10 @@ class GenresChoice extends Component {
                                         : "",
                             }}
                             onClick={() => {
-                                this.setState({
+                                this.setState((prev) => ({
                                     genre: "fantasy",
-                                });
+                                    reloadComment: prev.reloadComment + 1,
+                                }));
                             }}>
                             fantasy
                         </Button>
@@ -64,9 +66,10 @@ class GenresChoice extends Component {
                                         : "",
                             }}
                             onClick={() => {
-                                this.setState({
+                                this.setState((prev) => ({
                                     genre: "history",
-                                });
+                                    reloadComment: prev.reloadComment + 1,
+                                }));
                             }}>
                             history
                         </Button>
@@ -79,9 +82,10 @@ class GenresChoice extends Component {
                                         : "",
                             }}
                             onClick={() => {
-                                this.setState({
+                                this.setState((prev) => ({
                                     genre: "horror",
-                                });
+                                    reloadComment: prev.reloadComment + 1,
+                                }));
                             }}>
                             horror
                         </Button>
@@ -94,9 +98,10 @@ class GenresChoice extends Component {
                                         : "",
                             }}
                             onClick={() => {
-                                this.setState({
+                                this.setState((prev) => ({
                                     genre: "romance",
-                                });
+                                    reloadComment: prev.reloadComment + 1,
+                                }));
                             }}>
                             romance
                         </Button>
@@ -109,15 +114,19 @@ class GenresChoice extends Component {
                                         : "",
                             }}
                             onClick={() => {
-                                this.setState({
+                                this.setState((prev) => ({
                                     genre: "scifi",
-                                });
+                                    reloadComment: prev.reloadComment + 1,
+                                }));
                             }}>
                             scifi
                         </Button>
                     </ButtonGroup>
                 </div>
-                <BookList list={bookType} />
+                <BookList
+                    list={bookType}
+                    reloadComment={this.state.reloadComment}
+                />
             </>
         );
     }

@@ -43,6 +43,10 @@ class ReviewsAccordion extends Component {
         if (this.props.notifyReviews !== pP.notifyReviews) {
             this.getReviews();
         }
+
+        if (this.props.reloadComment !== pP.reloadComment) {
+            this.setState({ asin: "", comments: [] });
+        }
     }
 
     componentDidMount() {
