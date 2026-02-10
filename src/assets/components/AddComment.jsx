@@ -31,6 +31,7 @@ const AddComment = (props) => {
                 );
                 props.onDone?.(false);
             });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 };
 export default AddComment;

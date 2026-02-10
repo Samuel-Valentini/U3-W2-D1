@@ -1,9 +1,10 @@
 import { Button, Col, Row } from "react-bootstrap";
 import SingleBook from "./SingleBook";
 import Form from "react-bootstrap/Form";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ReviewsAccordion from "./ReviewsAccordion";
 import AddComment from "./AddComment";
+import { reloadCounter } from "./variables";
 
 const BookList = (props) => {
     const [notifyReviews, setNotifyReviews] = useState(0);
@@ -38,11 +39,16 @@ const BookList = (props) => {
         });
     };
 
+    if (reloadCounter[reloadCounter.length - 1] !== props.reloadComment) {
+        setShowForm(false);
+        reloadCounter.push(props.reloadComment);
+    }
+
     // !!!!!!!!
 
-    useEffect(() => {
-        setShowForm(false);
-    }, [props.reloadComment]);
+    // useEffect(() => {
+    //     setShowForm(false);
+    // }, [props.reloadComment]);
 
     const { list } = props;
     const newList = list.filter((book) =>
