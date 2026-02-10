@@ -31,16 +31,14 @@ const ReviewsAccordion = (props) => {
             });
     };
 
-    // !!!!!!
-
     useEffect(() => {
         getReviews();
     }, [props.asin, props.notifyReviews]);
 
-    useEffect(() => {
-        setAsin(props.asin);
-        setComments([]);
-    }, [props.reloadComment]);
+    // useEffect(() => {
+    //     setAsin(props.asin);
+    //     setComments([]);
+    // }, [props.reloadComment]);
 
     return (
         <Accordion defaultActiveKey="" className="my-2">
