@@ -35,10 +35,10 @@ const ReviewsAccordion = (props) => {
 
     useEffect(() => {
         getReviews();
-    }, [props.asin, props.reloadComment, props.notifyReviews]);
+    }, [props.asin, props.notifyReviews]);
 
     useEffect(() => {
-        setAsin(props.asin);
+        // setAsin(props.asin);
         setComments([]);
     }, [props.reloadComment]);
 
