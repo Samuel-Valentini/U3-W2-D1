@@ -197,8 +197,6 @@ const BookList = (props) => {
                                             dataToSend={dataToSend}
                                             onDone={(ok) => {
                                                 setShouldPost(false);
-
-                                                // !!!!!!
                                                 setNotifyReviews(
                                                     (prev) => prev + 1,
                                                 );
