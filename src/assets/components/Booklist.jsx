@@ -41,14 +41,10 @@ const BookList = (props) => {
 
     if (reloadCounter[reloadCounter.length - 1] !== props.reloadComment) {
         setShowForm(false);
+        reloadCounter.pop();
         reloadCounter.push(props.reloadComment);
+        console.log(reloadCounter);
     }
-
-    // !!!!!!!!
-
-    // useEffect(() => {
-    //     setShowForm(false);
-    // }, [props.reloadComment]);
 
     const { list } = props;
     const newList = list.filter((book) =>
