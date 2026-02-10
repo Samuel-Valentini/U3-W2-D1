@@ -21,7 +21,7 @@ const GenresChoice = () => {
                 }}
                 onClick={() => {
                     setGenre(genreChoose);
-                    setReloadComment(genreChoose + 1);
+                    setReloadComment(reloadComment + 1);
                 }}>
                 {genreChoose}
             </Button>
