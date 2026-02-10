@@ -38,6 +38,8 @@ const BookList = (props) => {
         });
     };
 
+    // !!!!!!!!
+
     useEffect(() => {
         setShowForm(false);
     }, [props.reloadComment]);
@@ -195,7 +197,9 @@ const BookList = (props) => {
                                             dataToSend={dataToSend}
                                             onDone={(ok) => {
                                                 setShouldPost(false);
-                                                setNotifyReviews((n) => n + 1);
+                                                setNotifyReviews(
+                                                    notifyReviews + 1,
+                                                );
 
                                                 if (ok) {
                                                     setDataToSend((prev) => ({
