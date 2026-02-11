@@ -4,12 +4,14 @@ import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import ReviewsAccordion from "./ReviewsAccordion";
 import AddComment from "./AddComment";
-import { reloadCounter } from "./variables";
+// import { reloadCounter } from "./variables";
+// import { useEffect } from "react";
 
 const BookList = (props) => {
     const [notifyReviews, setNotifyReviews] = useState(0);
     const [search, setSearch] = useState("");
     // const [genre, setGenre] = useState("fantasy");
+    const [memory, setMemory] = useState(null);
     const [selectedAsin, setSelectedAsin] = useState("");
     const [dataToSend, setDataToSend] = useState({
         comment: "",
@@ -17,12 +19,14 @@ const BookList = (props) => {
         elementId: "",
     });
     const [shouldPost, setShouldPost] = useState(false);
-    const [showForm, setShowForm] = useState(true);
+    // const [showForm, setShowForm] = useState(true);
 
     const setBooklistState = (selAsin) => {
         setSelectedAsin(selAsin);
-        setShowForm(true);
+        setMemory(props.reloadComment);
     };
+
+    const showForm = memory === props.reloadComment;
 
     const setCommentDataToSend = (newValue) => {
         setDataToSend({
@@ -39,12 +43,16 @@ const BookList = (props) => {
         });
     };
 
-    if (reloadCounter[reloadCounter.length - 1] !== props.reloadComment) {
-        setShowForm(false);
-        reloadCounter.pop();
-        reloadCounter.push(props.reloadComment);
-        console.log(reloadCounter);
-    }
+    // useEffect(() => {
+    //     setShowForm(false);
+    // }, [props.reloadComment]);
+
+    // if (reloadCounter[reloadCounter.length - 1] !== props.reloadComment) {
+    //     setShowForm(false);
+    //     reloadCounter.pop();
+    //     reloadCounter.push(props.reloadComment);
+    //     console.log(reloadCounter);
+    // }
 
     const { list } = props;
     const newList = list.filter((book) =>
