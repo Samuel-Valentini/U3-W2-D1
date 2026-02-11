@@ -20,7 +20,7 @@ const SingleBook = (props) => {
     return (
         <Col md="4" lg="3" xxl="2" className="mb-3" key={book.asin}>
             <Card
-                className={`my-card ${book.asin === props.selectedAsin ? "bg-warning" : ""}`}>
+                className={`my-card ${book.asin === props.selectedAsin && props.memory === props.reloadComment ? "bg-warning" : ""}`}>
                 <Card.Img
                     variant="top"
                     src={book.img}

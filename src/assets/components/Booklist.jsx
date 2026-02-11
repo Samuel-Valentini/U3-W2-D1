@@ -92,6 +92,8 @@ const BookList = (props) => {
                                     shouldPost={shouldPost}
                                     setCommentDataToSend={setCommentDataToSend}
                                     setRateDataToSend={setRateDataToSend}
+                                    memory={memory}
+                                    reloadComment={props.reloadComment}
                                 />
                             );
                         })}
