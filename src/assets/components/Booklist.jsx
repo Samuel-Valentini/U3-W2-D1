@@ -4,13 +4,10 @@ import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import ReviewsAccordion from "./ReviewsAccordion";
 import AddComment from "./AddComment";
-// import { reloadCounter } from "./variables";
-// import { useEffect } from "react";
 
 const BookList = (props) => {
     const [notifyReviews, setNotifyReviews] = useState(0);
     const [search, setSearch] = useState("");
-    // const [genre, setGenre] = useState("fantasy");
     const [memory, setMemory] = useState(null);
     const [selectedAsin, setSelectedAsin] = useState("");
     const [dataToSend, setDataToSend] = useState({
@@ -19,7 +16,6 @@ const BookList = (props) => {
         elementId: "",
     });
     const [shouldPost, setShouldPost] = useState(false);
-    // const [showForm, setShowForm] = useState(true);
 
     const setBooklistState = (selAsin) => {
         setSelectedAsin(selAsin);
@@ -43,17 +39,6 @@ const BookList = (props) => {
         });
     };
 
-    // useEffect(() => {
-    //     setShowForm(false);
-    // }, [props.reloadComment]);
-
-    // if (reloadCounter[reloadCounter.length - 1] !== props.reloadComment) {
-    //     setShowForm(false);
-    //     reloadCounter.pop();
-    //     reloadCounter.push(props.reloadComment);
-    //     console.log(reloadCounter);
-    // }
-
     const { list } = props;
     const newList = list.filter((book) =>
         book.title.toLowerCase().includes(search.toLowerCase()),
@@ -76,12 +61,6 @@ const BookList = (props) => {
     } else {
         tit = "";
     }
-
-    // console.log(newList);
-
-    // console.log(pri);
-
-    // console.log(pric);
 
     return (
         <>
