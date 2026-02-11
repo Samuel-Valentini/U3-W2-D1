@@ -1,4 +1,4 @@
-import { Component, useState } from "react";
+import { useState } from "react";
 import { Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -6,15 +6,6 @@ import ReviewsAccordion from "./ReviewsAccordion";
 
 const SingleBook = (props) => {
     const [selected, _] = useState(false);
-    // const [dataToSend, setDataToSend] = useState({
-    //     comment: "",
-    //     rate: "",
-    //     elementId: "",
-    // });
-
-    // const [asin, setAsin] = useState("");
-    // const [shouldPost, setShouldPost] = useState(false);
-
     const { book } = props;
 
     return (

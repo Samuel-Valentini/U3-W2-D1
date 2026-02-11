@@ -1,4 +1,4 @@
-import { Component, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Accordion, Button } from "react-bootstrap";
 
 const url = "https://striveschool-api.herokuapp.com/api/comments/";
@@ -27,7 +27,7 @@ const ReviewsAccordion = (props) => {
                 setComments(data);
             })
             .catch((e) => {
-                console.log("error " + e);
+                alert("error " + e);
             });
     };
 
@@ -72,7 +72,6 @@ const ReviewsAccordion = (props) => {
                                         })
                                             .then((res) => {
                                                 if (res.ok) {
-                                                    console.log("eliminato");
                                                     setComments((prev) =>
                                                         prev.filter(
                                                             (d) =>
@@ -87,7 +86,7 @@ const ReviewsAccordion = (props) => {
                                                 }
                                             })
                                             .catch((err) => {
-                                                console.log("errore", err);
+                                                alert("errore", err);
                                             });
                                     }}>
                                     Delete

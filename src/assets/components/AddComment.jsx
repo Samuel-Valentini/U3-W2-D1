@@ -17,7 +17,6 @@ const AddComment = (props) => {
         })
             .then((res) => {
                 if (res.ok) {
-                    console.log("tutto ok");
                     alert("Comment added.");
                     props.onDone?.(true);
                 } else {
@@ -25,9 +24,9 @@ const AddComment = (props) => {
                 }
             })
             .catch((e) => {
-                console.log("error " + e);
                 alert(
-                    " Error communicating with the server, please try again.",
+                    " Error communicating with the server, please try again. Error:" +
+                        e,
                 );
                 props.onDone?.(false);
             });

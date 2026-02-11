@@ -64,8 +64,6 @@ const BookList = (props) => {
 
     return (
         <>
-            {" "}
-            {console.log(selectedAsin)}
             <div className="w-75 m-auto">
                 <Form.Control
                     size="lg"
@@ -130,7 +128,7 @@ const BookList = (props) => {
                                         if (dataToSend.rate !== "") {
                                             setShouldPost(true);
                                         } else {
-                                            console.log("rate non inserito");
+                                            alert("rate non inserito");
                                         }
                                     }}>
                                     <h4 className="text-center mt-3">
